@@ -1,0 +1,550 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在线名片制作</title>
+<link rel="stylesheet" href="css/jquery.ui.resizable.css" />
+<link rel="stylesheet" href="css/style.css" />
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.10.1.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery.json-2.4.js"></script>
+<script type="text/javascript" src="SWFUpload/swfupload_fp10/swfupload.js"></script>
+<script type="text/javascript">
+function clearLetter(p){
+	var reg=/px$/g;
+	if(reg.test(p)){
+		p=p.replace(reg,"");
+	}
+	return Number(p);
+}
+function Switch(t,id1,id2,ele1,ele2){
+	var bt=$("#"+id1+" "+ele1);
+	var ct=$("#"+id2+" > "+ele2);
+	if($(t).hasClass("current")){return;}
+	else {
+		for(var i=0;i<bt.length;i++){
+			bt[i].num=i;
+		}
+		bt.removeClass("current");
+		$(t).addClass("current");
+		ct.hide();
+		ct.eq(t.num).show();
+	}
+}
+</script>
+</head>
+<body>
+  <div class="wp">
+    <div class="editbox">
+      <div class="hd">在线名片制作</div>
+      <div class="bd clearfix">
+        <div id="editarea" class="left">
+          <div id="toolbar" class="clearfix">
+            <div class="selectbox fontfamily">
+              <input type="text" value="黑体" />
+              <i></i>
+              <div class="hidlayer" style="display: none">
+                <ul>
+                  <li>黑体</li>
+                  <li>新蒂下午茶基本版</li>
+                  <li>新蒂小丸子小学版</li>
+                  <li>迷你简黛玉</li>
+                </ul>
+              </div>
+            </div>
+            <div class="selectbox fontsize">
+              <input type="text" value="12px" />
+              <i></i>
+              <div class="hidlayer" style="display: none">
+                <ul>
+                  <li>12px</li>
+                  <li>14px</li>
+                  <li>18px</li>
+                  <li>24px</li>
+                  <li>30px</li>
+                  <li>36px</li>
+                </ul>
+              </div>
+            </div>
+            <div class="palette">
+              <div class="blocolor"></div>
+              <em></em>
+            </div>
+            <div class="bold"></div>
+          </div>
+          <div class="card_container con_current"><img src="images/background1.jpg" /></div>
+          <div class="card_container"><img src="images/background1.jpg" /></div>
+        </div>
+        <div class="right">
+          <div class="shd">
+            <ul id="con_bt">
+              <li class="current">正面</li>
+              <li>反面</li>
+            </ul>
+          </div>
+          <div id="con_ct" class="sbd">
+            <div class="info_box current">
+              <div class="logo_up">
+                <div class="logo_thumb">
+                  <img src="images/logo1.png" />
+                </div>
+                <div class="logo_bt">
+                  <div id="uploadbutton"></div>
+                  <div class="hide_show"></div>
+                </div>
+                <div class="logo_tips">温馨提示：logo可自由拖动及缩放</div>
+              </div>
+              <div class="fontbox">
+                <div class="font_bt">
+                  <a href="javascript:;" class="addfont">添加文字</a>
+                  <a href="javascript:;" class="delfont">删除文字</a>
+                </div>
+                <div class="texts"></div>
+              </div>
+            </div>
+            <div class="info_box" style="display:none">
+              <div class="logo_up">
+                <div class="logo_thumb">
+                  <img src="images/logo1.png" />
+                </div>
+                <div class="logo_bt">
+                  <div id="uploadbutton2"></div>
+                  <div class="hide_show"></div>
+                </div>
+                <div class="logo_tips">温馨提示：logo可自由拖动及缩放</div>
+              </div>
+              <div class="fontbox">
+                <div class="font_bt">
+                  <a href="javascript:;" class="addfont">添加文字</a>
+                  <a href="javascript:;" class="delfont">删除文字</a>
+                </div>
+                <div class="texts"></div>
+              </div>
+            </div>
+          </div>
+          <div class="ft">
+            <a href="#" class="save">保存名片</a>
+            <a href="#" class="print">印刷名片</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tempbox">
+      <div class="hd clearfix">
+        <ul id="temp_bt">
+          <li><a href="javascript:;" class="current" onclick="Switch(this,'temp_bt','temp_ct','a','ul')">热门模板</a></li>
+          <li><a href="javascript:;" onclick="Switch(this,'temp_bt','temp_ct','a','ul')">最近使用</a></li>
+          <li><a href="javascript:;" onclick="Switch(this,'temp_bt','temp_ct','a','ul')">我收藏的</a></li>
+          <li><a href="javascript:;" onclick="Switch(this,'temp_bt','temp_ct','a','ul')">我保存的</a></li>
+        </ul>
+        <a href="#" class="more">更多模板>></a>
+      </div>
+      <div id="temp_ct" class="bd">
+        <ul class="clearfix">
+          <li><img src="images/temp1.jpg" class="tempone" /></li>
+          <li><img src="images/temp2.jpg" class="temptwo" /></li>
+          <li><img src="images/temp1.jpg" class="tempone" /></li>
+          <li><img src="images/temp1.jpg" class="tempone" /></li>
+          <li><img src="images/temp1.jpg" class="tempone" /></li>
+        </ul>
+        <ul class="clearfix" style="display:none">
+          <li><img src="images/temp1.jpg" class="tempone" /></li>
+          <li><img src="images/temp2.jpg" class="temptwo" /></li>
+          <li><img src="images/temp1.jpg" class="tempone" /></li>
+        </ul>
+        <ul class="clearfix" style="display:none">
+          <li><img src="images/temp2.jpg" class="temptwo" /></li>
+          <li><img src="images/temp1.jpg" class="tempone" /></li>
+          <li><img src="images/temp1.jpg" class="tempone" /></li>
+          <li><img src="images/temp1.jpg" class="tempone" /></li>
+        </ul>
+        <ul class="clearfix" style="display:none">
+          <li><img src="images/temp1.jpg" class="tempone" /></li>
+          <li><img src="images/temp1.jpg" class="tempone" /></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">
+var familyObj = {
+				heiti: "黑体",
+				xdxwcjbb: "新蒂下午茶基本版",
+				xdxwzxxb: "新蒂小丸子小学版",
+				mnjdy: "迷你简黛玉"
+				};
+var tempone = {facade: ["images/background1.jpg",{src: "images/logo1.png",width: 100,height: 70,left: "298px",top: "30px"},{text: "张三",family: "xdxwcjbb",size: "26px",color: "rgb(137, 68, 2)",fontWeight: "bold",left: "177px",top: "36px"},{text: "技术总监",family: "heiti",size: "12px",color: "rgb(137, 68, 2)",fontWeight: "normal",left: "177px",top: "70px"},{text: "13763055429",family: "heiti",size: "12px",color: "rgb(137, 68, 2)",fontWeight: "normal",left: "177px",top: "88px"},{text: "东莞宝库传媒技术有限公司",family: "heiti",size: "22px",color: "rgb(137, 68, 2)",fontWeight: "bold",left: "110px",top: "132px"},{text: "地址：东莞市南城区第一国际汇一城",family: "heiti",size: "12px",color: "rgb(137, 68, 2)",fontWeight: "normal",left: "110px",top: "160px"},{text: "电话：0769-33221156  传真：0769-3322156",family: "heiti",size: "12px",color: "rgb(137, 68, 2)",fontWeight: "normal",left: "110px",top: "178px"},{text: "E-mail:baoku@ydngjd.com",family: "heiti",size: "12px",color: "rgb(137, 68, 2)",fontWeight: "normal",left: "110px",top: "195px"},{text: "http://www.baoku.com",family: "heiti",size: "12px",color: "rgb(137, 68, 2)",fontWeight: "normal",left: "110px",top: "215px"}],
+			            obverse: ["images/background1.jpg","undefined",{text: "宝库传媒",family: "heiti",size: "28px",color: "rgb(137, 68, 2)",fontWeight: "bold",left: "170px",top: "100px"},{text: "创意改变生活  宝库成就经典",family: "xdxwcjbb",size: "18px",color: "rgb(137, 68, 2)",fontWeight: "normal",left: "114px",top: "135px"}]},
+			   temptwo = {facade: ["images/background2.jpg",{src: "images/logo2.png",width: 100,height: 76,left: "20px",top: "25px"},{text: "李四",family: "xdxwcjbb",size: "26px",color: "rgb(213, 41, 78)",fontWeight: "bold",left: "150px",top: "32px"},{text: "总经理",family: "heiti",size: "12px",color: "rgb(213, 41, 78)",fontWeight: "normal",left: "150px",top: "64px"},{text: "Mobile: 13763055429",family: "heiti",size: "12px",color: "rgb(213, 41, 78)",fontWeight: "normal",left: "150px",top: "80px"},{text: "博朗插画艺术工作室",family: "heiti",size: "22px",color: "rgb(213, 41, 78)",fontWeight: "bold",left: "38px",top: "140px"},{text: "地址：东莞市南城区第一国际汇一城",family: "heiti",size: "12px",color: "rgb(213, 41, 78)",fontWeight: "normal",left: "38px",top: "172px"},{text: "电话：0769-33221156  传真：0769-3322156",family: "heiti",size: "12px",color: "rgb(213, 41, 78)",fontWeight: "normal",left: "38px",top: "186px"},{text: "E-mail:baoku@ydngjd.com",family: "heiti",size: "12px",color: "rgb(213, 41, 78)",fontWeight: "normal",left: "38px",top: "202px"}],
+			            obverse: ["images/background2.jpg",{src: "images/logo2.png",width: 100,height: 76,left: "160px",top: "50px"},{text: "博朗插画",family: "heiti",size: "30px",color: "rgb(213, 41, 78)",fontWeight: "bold",left: "148px",top: "130px"},{text: "创意改变生活  博朗成就经典",family: "xdxwcjbb",size: "18px",color: "rgb(213, 41, 78)",fontWeight: "normal",left: "98px",top: "166px"}]};
+$(function(){
+$("#temp_ct img").click(function(event){
+	var cla = $(this).attr("class"), container1 = $(".card_container").eq(0), container2 = $(".card_container").eq(1);
+	var infobox1 = $("#con_ct .info_box").eq(0), infobox2 = $("#con_ct .info_box").eq(1);
+	var ppp = "tempone";
+	$(".card_container,#con_ct .texts").empty();
+	for(var i=0;i<eval(cla).facade.length;i++){
+		if(i == 0){
+			container1.append("<img src='"+eval(cla).facade[i]+"' />");
+		}
+		else if(i == 1){
+			if(eval(cla).facade[i] == "undefined"){
+				$(".logo_thumb",infobox1).empty().append("<img src='images/logo_default.png' />");
+				continue;
+			}
+			$(".logo_thumb",infobox1).empty().append("<img src='"+eval(cla).facade[i].src+"' />");
+			container1.append("<div class='drag_logo'><img src='"+eval(cla).facade[i].src+"' /></div>");
+			$(".drag_logo img",container1).width(eval(cla).facade[i].width).height(eval(cla).facade[i].height);
+			$(".drag_logo",container1).width(eval(cla).facade[i].width).height(eval(cla).facade[i].height).css({"left": eval(cla).facade[i].left,"top": eval(cla).facade[i].top});
+		}
+		else {
+			container1.append("<div class='fontCtrl' style='font-family:"+familyObj[eval(cla).facade[i].family]+"; font-size:"+eval(cla).facade[i].size+"; color:"+eval(cla).facade[i].color+"; font-weight:"+eval(cla).facade[i].fontWeight+"; left:"+eval(cla).facade[i].left+"; top:"+eval(cla).facade[i].top+";'>"+eval(cla).facade[i].text+"</div>");
+			$(".fontCtrl",container1).last().data("family", eval(cla).facade[i].family);
+			$(".texts",infobox1).append("<input type='text' value='"+eval(cla).facade[i].text+"' />");
+		}
+	}
+	for(var i=0;i<eval(cla).obverse.length;i++){
+		if(i == 0){
+			container2.append("<img src='"+eval(cla).obverse[i]+"' />");
+		}
+		else if(i == 1){
+			if(eval(cla).obverse[i] == "undefined"){
+				$(".logo_thumb",infobox2).empty().append("<img src='images/logo_default.png' />");
+				continue;
+			}
+			$(".logo_thumb",infobox2).empty().append("<img src='"+eval(cla).obverse[i].src+"' />");
+			container2.append("<div class='drag_logo'><img src='"+eval(cla).obverse[i].src+"' /></div>");
+			$(".drag_logo img",container2).width(eval(cla).obverse[i].width).height(eval(cla).obverse[i].height);
+			$(".drag_logo",container2).width(eval(cla).obverse[i].width).height(eval(cla).obverse[i].height).css({"left": eval(cla).obverse[i].left,"top": eval(cla).obverse[i].top});
+		}
+		else {
+			container2.append("<div class='fontCtrl' style='font-family:"+familyObj[eval(cla).obverse[i].family]+"; font-size:"+eval(cla).obverse[i].size+"; color:"+eval(cla).obverse[i].color+"; font-weight:"+eval(cla).obverse[i].fontWeight+"; left:"+eval(cla).obverse[i].left+"; top:"+eval(cla).obverse[i].top+";'>"+eval(cla).obverse[i].text+"</div>");
+			$(".texts",infobox2).append("<input type='text' value='"+eval(cla).obverse[i].text+"' />");
+		}
+	}
+	$(".drag_logo").draggable({
+		scroll: false,
+		addClasses: false,
+		containment: "parent"
+	}).resizable({
+		aspectRatio: true,
+		handles: "ne,se,sw,nw",
+		alsoResize: ".ui-resizable-resizing img",
+		containment: "parent"
+	});
+	$(".fontCtrl").draggable({
+		scroll: false,
+		addClasses: false,
+		containment: "parent"
+	});
+	event.stopPropagation();
+});
+function pageinit(){
+	$("#temp_ct img").first().trigger("click");
+	$(".palette").append(intocolor());
+	$("#toolbar .hidlayer").each(function(){
+		if($("li",this).length > 5){
+			$(this).height($("li",this).height() * 5);
+		}
+	});
+}
+pageinit();
+$("#con_bt li").mouseover(function(){
+	if($(this).hasClass("current")){return;}
+	else {
+		$(this).addClass("current").siblings().removeClass("current");
+		$("#con_ct .info_box").removeClass("current").hide().eq($(this).index()).show().addClass("current");
+		$(".card_container").removeClass("con_current").eq($(this).index()).addClass("con_current");
+	}
+});
+$(".card_container").click(function(){
+	if($(this).hasClass("con_current")){return;}
+	else {
+		var idx = $(".card_container").index(this);
+		$(this).addClass("con_current").siblings().removeClass("con_current");
+		$("#con_bt li").removeClass("current").eq(idx).addClass("current");
+		$("#con_ct .info_box").removeClass("current").hide().eq(idx).show().addClass("current");
+	}
+});
+$(".hide_show").click(function(event){
+	if($(this).hasClass("show_bg")){
+		$(this).removeClass("show_bg");
+		$(".drag_logo",$(".card_container").filter(".con_current")).show();
+		event.stopPropagation();
+	}
+	else {
+		$(this).addClass("show_bg");
+		$(".drag_logo",$(".card_container").filter(".con_current")).hide();
+		event.stopPropagation();
+	}
+});
+$(".card_container").on("click",".fontCtrl",function(){
+	$(".drag_logo").removeClass("dragCur");
+	$(".fontCtrl").removeClass("fontCur");
+	$(this).addClass("fontCur");
+	$("#con_ct .texts input").removeClass("current");
+	$("#con_ct .texts input").eq($(".fontCtrl").index(this)).addClass("current");
+	$(".fontfamily input").val($(this).css("font-family"));
+	$(".fontsize input").val($(this).css("font-size"));
+	$("#toolbar .blocolor").css("background-color", $(this).css("color"));
+});
+$("#con_ct .fontbox").on("click",".texts input",function(){
+	var fontCur = $(".fontCtrl").eq($("#con_ct .texts input").index(this));
+	$("#con_ct .texts input").removeClass("current");
+	$(this).addClass("current");
+	$(".fontCtrl").removeClass("fontCur");
+	fontCur.addClass("fontCur");
+	$(".fontfamily input").val(fontCur.css("font-family"));
+	$(".fontsize input").val(fontCur.css("font-size"));
+	$("#toolbar .blocolor").css("background-color", fontCur.css("color"));
+});
+$("#con_ct .fontbox").on("keyup",".texts input",function(){
+	$(".fontCur").text($(this).val());
+});
+$("#toolbar i").click(function(event){
+	$(this).next().css("display")=="none" ? 
+	($("#toolbar .hidlayer").hide(),$(".colorpanel").hide(),$(this).next().show()) : $(this).next().hide();
+	event.stopPropagation();
+});
+$(".palette").click(function(event){
+	if($(event.target).closest(".colorpanel").length > 0){
+		event.stopPropagation();
+		return;
+	}
+	var colorpanel = $(".colorpanel",this);
+	colorpanel.css("display")=="none" ? 
+	($("#toolbar .hidlayer").hide(),colorpanel.show()) : colorpanel.hide();
+	event.stopPropagation();
+});
+$(".card_container").on("click",".drag_logo",function(){
+	$(".fontCtrl").removeClass("fontCur");
+	$("#con_ct .texts input").removeClass("current");
+	$(".drag_logo").removeClass("dragCur");
+	$(this).addClass("dragCur");
+});
+$("#toolbar .bold").click(function(event){
+	if($(".fontCur").length > 0){
+		var fontCur = $(".fontCur");
+		(fontCur.css("font-weight") == "bold" || fontCur.css("font-weight") == 700) ? fontCur.css("font-weight", "normal") : fontCur.css("font-weight", "bold");
+	}
+	event.stopPropagation();
+});
+$("#toolbar td").click(function(event){
+	var bgColor = $(this).css("background-color");
+	if($(".fontCur").length > 0){
+		$(".fontCur").css("color", bgColor);
+	}
+	$("#toolbar .blocolor").css("background-color", bgColor);
+	$("#toolbar .colorpanel").hide();
+	event.stopPropagation();
+});
+$(".fontsize li").click(function(event){
+	var size = $(this).text();
+	if($(".fontCur").length > 0){
+		$(".fontCur").css("font-size", size);
+	}
+	$(".fontsize input").val(size);
+	$(".fontsize .hidlayer").hide();
+	event.stopPropagation();
+});
+$(".fontfamily li").click(function(event){
+	var family = $(this).text();
+	if($(".fontCur").length > 0){
+		$(".fontCur").css("font-family", family);
+	}
+	$(".fontfamily input").val(family);
+	$(".fontfamily .hidlayer").hide();
+	event.stopPropagation();
+});
+$("body").click(function(event){
+	if(!($(event.target).is(".drag_logo img"))){
+		$(".drag_logo").removeClass("dragCur");
+	}
+	if(!($(event.target).is(".fontCtrl") || $(event.target).is("#con_ct .texts input"))){
+		$(".fontCtrl").removeClass("fontCur");
+		$("#con_ct .texts input").removeClass("current");
+	}
+	$("#toolbar .hidlayer").hide();
+	$(".colorpanel").hide();
+});
+var swfu = new SWFUpload({
+	upload_url: "upload.php",
+	flash_url: "SWFUpload/swfupload_fp10/swfupload.swf",
+	file_types: "*.jpg;*.gif;*.png",
+	file_types_description: "All Image Files",
+	file_size_limit: 0,
+	file_upload_limit: 0,
+	file_queue_limit: 0,
+	button_placeholder_id: "uploadbutton",
+	button_image_url: "images/upload_btn.png",
+	button_width: 90,
+	button_height: 30,
+	button_cursor: SWFUpload.CURSOR.HAND,
+	button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+	file_dialog_complete_handler: fileDialogComplete,
+	upload_start_handler: uploadStart,
+	upload_progress_handler: uploadProgress,
+	upload_success_handler: uploadSuccess,
+	upload_error_handler: uploadError
+});
+var swfu2 = new SWFUpload({
+	upload_url: "upload.php",
+	flash_url: "SWFUpload/swfupload_fp10/swfupload.swf",
+	file_types: "*.jpg;*.gif;*.png",
+	file_types_description: "All Image Files",
+	file_size_limit: 0,
+	file_upload_limit: 0,
+	file_queue_limit: 0,
+	button_placeholder_id: "uploadbutton2",
+	button_image_url: "images/upload_btn.png",
+	button_width: 90,
+	button_height: 30,
+	button_cursor: SWFUpload.CURSOR.HAND,
+	button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+	file_dialog_complete_handler: fileDialogComplete,
+	upload_start_handler: uploadStart,
+	upload_progress_handler: uploadProgress,
+	upload_success_handler: uploadSuccess,
+	upload_error_handler: uploadError
+});
+function fileDialogComplete(num_s,num_q){
+	if(num_q > 0){
+		this.startUpload();
+	}
+}
+function uploadStart(file){
+	var h = $(".logo_thumb img").height();
+	$(".logo_thumb").append("<div class='uploadbox'><div class='upload_progress'><span></span></div></div>");
+	$(".uploadbox").height(h);
+	$(".upload_progress").css("margin-top", (h - $(".upload_progress").height()) / 2);
+}
+function uploadProgress(file,bytesLoaded,bytesTotal){
+	var perc = parseInt(bytesLoaded / bytesTotal * 100);
+	$(".upload_progress span").css("width", perc+"%");
+}
+function uploadSuccess(file,data){
+	var con_current = $(".card_container").filter(".con_current"), cur_info = $("#con_ct .info_box").filter(".current");
+	$(".uploadbox").remove();
+	$(".logo_thumb img",cur_info).remove();
+	$(".logo_thumb",cur_info).append("<img src='"+data+"' />");
+	if($(".drag_logo",con_current).length > 0){
+		$(".drag_logo",con_current).remove();
+	}
+	con_current.append("<div class='drag_logo'><img src='"+data+"' /></div>");
+	var drag_logo = $(".drag_logo",con_current), img = $("img",drag_logo);
+	img.load(function(){
+		img.width(60);
+		drag_logo.width(img.width()).height(img.height()).draggable({
+			scroll: false,
+			addClasses: false,
+			containment: "parent"
+		}).resizable({
+			aspectRatio: true,
+			handles: "ne,se,sw,nw",
+			alsoResize: ".ui-resizable-resizing img",
+			containment: "parent"
+		});
+	});
+}
+function uploadError(file,code,msg){
+	$(".uploadbox").remove();
+	alert("上传失败!"+msg);
+}
+$(".addfont").click(function(event){
+	var curcard = $(".card_container").eq($(this).parent().parent().parent().index());
+	$(this).parent().next().append("<input type='text' value='' />");
+	curcard.append("<div class='fontCtrl' style='font-family:黑体; font-size:18px; color:rgb(0, 0, 0); font-weight:normal; left:0; top:0;'></div>");
+	$(this).parent().next().children().last().trigger("click").focus();
+	$(".fontCtrl",curcard).last().draggable({
+		scroll: false,
+		addClasses: false,
+		containment: "parent"
+	});
+	event.stopPropagation();
+});
+$(".delfont").click(function(event){
+	var input = $(".current",$(this).parent().next());
+	if(input.length > 0){
+		var idx = $("#con_ct .texts input").index(input);
+		input.remove();
+		$(".fontCtrl").eq(idx).remove();
+	}
+	event.stopPropagation();
+});
+$(".save").click(function(event){
+	var card1 = $(".card_container").eq(0), card2 = $(".card_container").eq(1), logo1 = $(".drag_logo img",card1), logo2 = $(".drag_logo img",card2);
+	var fontCtrl1 = $(".fontCtrl",card1), fontCtrl2 = $(".fontCtrl",card2), zhengmian = [], fanmian = [];
+	zhengmian[2] = [];
+	fanmian[2] = [];
+	zhengmian[0] = {src: $("img",card1).first().attr("src"), width: 437, height: 250};
+	fanmian[0] = {src: $("img",card2).first().attr("src"), width: 437, height: 250};
+	if(logo1.length > 0){
+		zhengmian[1] = {src: logo1.attr("src"), width: logo1.width(), height: logo1.height(), left: clearLetter(logo1.parent().css("left")), top: clearLetter(logo1.parent().css("top"))};
+	}
+	else {
+		zhengmian[1] = "undefined";
+	}
+	if(logo2.length > 0){
+		fanmian[1] = {src: logo2.attr("src"), width: logo2.width(), height: logo2.height(), left: clearLetter(logo2.parent().css("left")), top: clearLetter(logo2.parent().css("top"))};
+	}
+	else {
+		fanmian[1] = "undefined";
+	}
+	for(var i=0;i<fontCtrl1.length;i++){
+		zhengmian[2][i] = {text: fontCtrl1.eq(i).text(), family: "fonts/"+fontCtrl1.eq(i).data("family")+".ttf", size: clearLetter(fontCtrl1.eq(i).css("font-size")), color: fontCtrl1.eq(i).css("color").match(/\d+/g), fontWeight: fontCtrl1.eq(i).css("font-weight"), left: clearLetter(fontCtrl1.eq(i).css("left")), top: clearLetter(fontCtrl1.eq(i).css("top"))};
+	}
+	for(var i=0;i<fontCtrl2.length;i++){
+		fanmian[2][i] = {text: fontCtrl2.eq(i).text(), family: "fonts/"+fontCtrl2.eq(i).data("family")+".ttf", size: clearLetter(fontCtrl2.eq(i).css("font-size")), color: fontCtrl2.eq(i).css("color").match(/\d+/g), fontWeight: fontCtrl2.eq(i).css("font-weight"), left: clearLetter(fontCtrl2.eq(i).css("left")), top: clearLetter(fontCtrl2.eq(i).css("top"))};
+	}
+	alert(zhengmian[2][0].color);
+	event.stopPropagation();
+});
+$(document).keydown(function(e){
+	var logo = $(".dragCur"), logoLeft = clearLetter(logo.css("left")), logoTop = clearLetter(logo.css("top"));
+	var font = $(".fontCur"), fontLeft = clearLetter(font.css("left")), fontTop = clearLetter(font.css("top"));
+	if(e.keyCode==37){
+		if(logo.length > 0 && logoLeft > 0){
+			logoLeft--;
+			logo.css("left", logoLeft);
+		}
+		if(font.length > 0 && fontLeft > 0){
+			fontLeft--;
+			font.css("left", fontLeft);
+		}
+	}
+	if(e.keyCode==38){
+		if(logo.length > 0 && logoTop > 0){
+			logoTop--;
+			logo.css("top", logoTop);
+		}
+		if(font.length > 0 && fontTop > 0){
+			fontTop--;
+			font.css("top", fontTop);
+		}
+	}
+	if(e.keyCode==39){
+		if(logo.length > 0 && logoLeft < logo.parent().width()-logo.width()){
+			logoLeft++;
+			logo.css("left", logoLeft);
+		}
+		if(font.length > 0 && fontLeft < font.parent().width()-font.width()){
+			fontLeft++;
+			font.css("left", fontLeft);
+		}
+	}
+	if(e.keyCode==40){
+		if(logo.length > 0 && logoTop < logo.parent().height()-logo.height()){
+			logoTop++;
+			logo.css("top", logoTop);
+		}
+		if(font.length > 0 && fontTop < font.parent().height()-font.height()){
+			fontTop++;
+			font.css("top", fontTop);
+		}
+	}
+});
+});
+</script>
+<script type="text/javascript" src="js/palette.js"></script>
+<script type="text/javascript" src="js/font.js"></script>
+</body>
+</html>

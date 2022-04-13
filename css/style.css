@@ -1,0 +1,81 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,caption{margin:0;padding:0;border:0;outline:0;font-size:100%;background:transparent;}
+body {font: 12px/1.5 'Lucida Grande',tahoma,arial,宋体b8b\4f53; color:#333;}
+ul, ol, li {list-style: none;}
+:focus {outline:none;}
+table {border-collapse: collapse; vertical-align: middle;}
+strong, th, thead td{font-weight:bold; font-family: "微软雅黑",Arial;}
+th, td {text-align: center; padding: 5px 10px; overflow: hidden; zoom: 1;}
+td.left, th.left {text-align: left;}
+td.right, th.right {text-align: right;}
+cite, em, dfn, i {font-style:normal;}
+u {text-decoration: none;}
+textarea, input[type='text'], input[type='password'], select{padding:4px; margin: 0; font-size: 12px;}
+input[type='submit'], input[type='button'], input[type='reset'] {border: none; cursor: pointer;}
+.clearfix {zoom: 1;}
+.clearfix:after {content:'\0020'; display:block; height:0; clear:both;}
+a {color: #333; text-decoration: none;}
+a:hover {color: #f60;}
+.more {float: right;}
+.wp {width: 1000px; margin: 10px auto;}
+.editbox {border: 1px solid #e6e6e6; background-color: #f9f9f9; margin-bottom: 10px;}
+.editbox .hd {height: 34px; line-height: 34px; border-bottom: 1px solid #e6e6e6; background-color: #f1f1f1; padding: 0 10px; font-size: 14px; font-weight: bold;}
+.editbox .left {width: 600px; float: left;}
+#toolbar {height: 20px; padding: 5px 20px; background-color: #fdfdfd; margin-bottom: 9px; border-bottom: 1px solid #e6e6e6;}
+#toolbar input {width: 45px; padding: 2px; border: 1px solid #999; height: 14px; line-height: 14px; float: left;}
+#toolbar .fontfamily input {width: 100px;}
+.selectbox {float: left; margin-right: 10px; position: relative;}
+.selectbox i {width: 17px; height: 18px; background: url(../images/select_icon.png) no-repeat; border: 1px solid #999; border-left: none; float: left;}
+.selectbox i:hover {background: url(../images/select_icon2.png) no-repeat;}
+#toolbar .hidlayer {width: 67px; border: 1px solid #999; border-top: none; background-color: #fff; position: absolute; left: 0; top: 20px; z-index: 450; overflow: auto; white-space:nowrap;}
+#toolbar .fontfamily .hidlayer {width: 122px;}
+#toolbar .hidlayer li {height: 24px; line-height: 24px; padding: 0 5px; cursor: default;}
+#toolbar .hidlayer li:hover {background-color: #eee;}
+#toolbar .palette {width: 14px; height: 14px; padding: 2px; border: 1px solid #999; background-color: #e9e9e9; position: relative; float: left; margin-right: 10px;}
+#toolbar .palette .blocolor {width: 12px; height: 12px; border: 1px solid #999; background-color: #000;}
+#toolbar .palette em {width: 10px; height: 8px; background: url(../images/palette_icon.png) no-repeat; position: absolute; right: 0; bottom: 0;}
+#toolbar .palette .colorpanel {position: absolute; left: -1px; top: 22px; z-index: 450;}
+#toolbar .palette .colorpanel td {padding: 0;}
+#toolbar .bold {width: 20px; height: 20px; float: left; cursor: pointer; background: url(../images/bold.png) no-repeat 2px 3px;}
+#toolbar table {*width: 221px;}
+.card_container {width: 437px; height: 250px; margin: 0 auto 10px; padding: 3px; border: 2px dotted #f9f9f9; cursor: pointer; position: relative;}
+.con_current {border: 2px dotted #f60;}
+.drag_logo {position: absolute; left: 3px; top: 3px;}
+.dragCur .ui-resizable-handle {width: 5px; height: 5px;}
+.fontCtrl {position: absolute; line-height: 1.0; border: 1px solid transparent;}
+.fontCur {border: 1px solid #f60;}
+.editbox .right {width: 397px; float: left; border-left: 1px solid #e6e6e6;}
+.editbox .right .shd {height: 30px; padding: 10px 15px 0;}
+#con_bt {overflow: hidden; zoom: 1;}
+.editbox .right .shd li {height: 30px; line-height: 30px; padding: 0 30px; font-size: 14px; font-weight: bold; background-color: #e6e6e6; float: left; margin-right: 10px; cursor: pointer;}
+.editbox .right .shd li.current {border: 2px solid #f60; border-bottom: none; background-color: #fff; position: relative;}
+#con_ct {width: 394px; height: 486px; border: 2px solid #f60; background-color: #fff; overflow: auto;}
+#con_ct .info_box {width: 364px; margin: 15px auto;}
+.logo_up {padding-bottom: 10px; border-bottom: 1px solid #ddd; overflow: hidden; zoom: 1;}
+.logo_thumb {width: 60px; padding: 4px; border: 1px solid #e1e1e1; float: left; margin-right: 10px; position: relative;}
+.logo_thumb img {width: 60px;}
+.logo_bt {float: left; margin-bottom: 10px;}
+.fontbox {padding: 10px 0;}
+.font_bt {overflow: hidden; zoom: 1;}
+.font_bt a {width: 80px; height: 30px; line-height: 30px; text-align: center; background-color: #eff8ff; float: left; margin: 0 10px 10px 0;}
+.fontbox input {width: 330px; height: 16px; line-height: 16px; padding: 4px 0; border: 1px solid #ddd; margin-bottom: 10px;}
+.fontbox input:hover,.fontbox input.current {border: 1px solid #ec9615;}
+.hide_show {display: block; width: 90px; height: 30px; float: left; margin-right: 10px; background: url(../images/hide_logo.png) no-repeat; cursor: pointer;}
+.show_bg {background: url(../images/show_logo.png) no-repeat;}
+.logo_tips {height: 30px; line-height: 30px; float: left; color: #f60;}
+.editbox .right .ft {padding: 10px 0; text-align: right;}
+.editbox .right .ft a {display: inline-block; margin-right: 10px; height: 30px; line-height: 30px; padding: 0 10px; color: #fff; font-size: 14px; font-weight: bold;}
+.editbox .right .ft .save {background-color: #999;}
+.editbox .right .ft .print {background-color: #cf610a;}
+.tempbox {border: 1px solid #e6e6e6;}
+.tempbox .hd {height: 30px; line-height: 30px; padding: 4px 10px 0; border-bottom: 1px solid #e6e6e6; background-color: #f1f1f1;}
+.tempbox .hd ul {float: left;}
+.tempbox .hd li {height: 30px; float: left;}
+.tempbox .hd li a {display: block; height: 30px; padding: 0 15px;}
+.tempbox .hd li a.current {border: 1px solid #e1e1e1; border-bottom: none; background-color: #fff; color: #f60; position: relative;}
+.tempbox .bd {padding: 15px 11px 0;}
+.tempbox .bd li {width: 216px; height: 124px; padding: 1px; margin: 0 10px 10px; border: 3px solid #e2e2e2; float: left; cursor: pointer;}
+.tempbox .bd li:hover {border: 3px solid #f60;}
+.swfupload {float: left; margin-right: 10px;}
+.uploadbox {width: 60px; position: absolute; left: 0; top: 0;}
+.upload_progress {width: 58px; height: 6px; border: 1px solid #666; background-color: #999;}
+.upload_progress span {display: block; height: 6px; background-color: #f4f4f4;}
